@@ -38,7 +38,7 @@ export default function SideNav({ items, userType, className }) {
       <ul className="absolute top-[139px] nav-page[color: red] w-[214px] text-[16px] flex flex-col gap-[15px]">
         {items.map((item, index) => (
           <li key={index} className={twMerge("")}>
-            <NavLink to={item.url}>
+            <NavLink end to={item.url}>
               {({ isActive, isPending, isTransitioning }) => (
                 <div
                   className={twMerge(

@@ -11,14 +11,34 @@ export default function Home() {
         items={[
           {
             text: "Dashboard",
-            url: "",
+            url: "/student",
             icon: icons.DashboardSvg,
           },
           {
             text: "Courses",
-            url: "/courses",
+            url: "/student/courses",
             icon: icons.CoursesSvg,
           },
+          {
+            text: "Files",
+            url: "/student/files",
+            icon: icons.FilesSvg,
+          },
+          {
+            text: "My account",
+            url: "/account",
+            icon: icons.MyAccountSvg,
+          },
+          {
+            text: "Settings",
+            url: "/student/settings",
+            icon: icons.SettingsSvg,
+          },
+          {
+            text: "Announcements",
+            url: "/student/announcements",
+            icon: icons.AnnouncementsSvg,
+          }
         ]}
         userType={UserTypes.STUDENT}
       />
