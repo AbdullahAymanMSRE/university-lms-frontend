@@ -1,4 +1,11 @@
+import Courses from "../pages/student/Courses";
+import Dashboard from "../pages/student/Dashboard";
+
 const studentRoutes = [
+  {
+    path: "",
+    element: <Dashboard />,
+  },
   {
     path: "courses",
     element: <Courses />,
