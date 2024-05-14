@@ -1,6 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "../pages/Home";
-import Courses from "../pages/Courses";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "../pages/student/Home";
 import instructorRoutes from "./instructor";
 import studentRoutes from "./student";
 
