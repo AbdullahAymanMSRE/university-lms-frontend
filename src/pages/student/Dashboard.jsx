@@ -7,15 +7,15 @@ import Task from "../../components/Task";
 export default function Dashboard() {
   const tasks = 21;
   return (
-    <section className="h-screen flex flex-col gap-6 rounded-3xl">
+    <section className="h-screen w-full flex flex-col gap-6 rounded-3xl">
       <WhiteBox
         icon={icons.BoxIconsSvg()}
         header="My Activities"
         text={`${tasks} Tasks`}
         showGraph
       />
-      <div className="flex gap-7">
-        <div className="w-[510px] h-80 bg-white rounded-3xl px-7 py-5 text-xl gap-5 relative">
+      <div className="flex w-full gap-7">
+        <div className="max-w-lg basis-1/2 flex-1 h-80 bg-white rounded-3xl px-7 py-5 text-xl gap-5 relative lg:w-full lg:flex-wrap">
           <h2 className="font-bold mb-5">My Courses</h2>
           <div className="flex flex-col gap-5">
             <Coursebar course="History" author="30SS" />
@@ -24,7 +24,7 @@ export default function Dashboard() {
             <Link text="View all" color="primary" />
           </div>
         </div>
-        <div className="w-[510px] h-80 bg-white rounded-3xl px-7 py-5 text-xl relative">
+        <div className="max-w-lg basis-1/2 flex-1 h-80 bg-white rounded-3xl px-7 py-5 text-xl relative lg:w-full lg:flex-wrap">
           <h2 className="font-bold text-3xl mb-7">Upcoming Task</h2>
           <div className="flex flex-col gap-5">
             <Task

@@ -3,14 +3,6 @@ import { UserTypes } from "../utils/constants";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
-/*
-item: {
-    text: string,
-    url: string
-    icon: ( active: boolean ) => JSX.Element
-}
-*/
-
 export default function SideNav({ items, userType, className }) {
   const isStudent = userType === UserTypes.STUDENT;
   const bgClr = isStudent ? "bg-primary" : "bg-secondary";
@@ -19,30 +11,30 @@ export default function SideNav({ items, userType, className }) {
   return (
     <nav
       className={twMerge(
-        "h-screen w-72 bg-white pl-10 pt-12 relative",
+        "bg-white p-10 flex flex-col gap-16",
         className
       )}
     >
-      <div className="logo h-11 w-40 relative">
-        <div className={`h-11 w-11 rounded-xl inline-block ${bgClr}`}></div>
-        <p
-          className={`inline-block ${textClr} h-10 w-[106px] ml-3 text-2xl font-bold absolute -top-1`}
+      <div className="logo h-11 flex items-center gap-3">
+        <div className={`h-full w-11 rounded-xl ${bgClr}`}></div>
+        <div
+          className={`${textClr} text-2xl leading-5 font-bold`}
         >
           {isStudent ? "Student" : "Instructor"}
           <br />
-          <span className="text-xs font-medium absolute top-9 uppercase">
+          <span className="text-xs font-medium uppercase">
             Dashboard
           </span>
-        </p>
+        </div>
       </div>
-      <ul className="absolute top-[139px] nav-page[color: red] w-[214px] text-[16px] flex flex-col gap-[15px]">
+      <ul className=" w-52 text-base flex flex-col gap-4">
         {items.map((item, index) => (
           <li key={index} className={twMerge("")}>
             <NavLink end to={item.url}>
               {({ isActive, isPending, isTransitioning }) => (
                 <div
                   className={twMerge(
-                    "pl-[10px] gap-3 rounded-md h-11 flex items-center ",
+                    "pl-3 gap-3 rounded-md h-11 flex items-center ",
                     clsx({
                       [bgClr]: isActive,
                     })

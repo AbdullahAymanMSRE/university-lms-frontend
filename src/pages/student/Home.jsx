@@ -9,7 +9,7 @@ export default function Home() {
     name: "John Doe",
   };
   return (
-    <body className="bg-[#F4F7FE] flex">
+    <body className="h-screen bg-pageColor flex">
       <SideNav
         items={[
           {
@@ -45,12 +45,12 @@ export default function Home() {
         ]}
         userType={UserTypes.STUDENT}
       />
-      <div className="flex-col flex ml-8 gap-7">
-        <div className="mt-12 font-bold">
-          <p className="text-sm leading-6 text-customBlue mb-3">
+      <div className="flex w-full p-7 flex-col gap-7">
+        <div className="font-bold">
+          <p className="text-sm text-customBlue mb-3">
             Hi {student.name},
           </p>
-          <h1 className="text-4xl leading-10 text-darkenedBlue">
+          <h1 className="text-4xl text-darkenedBlue">
             Welcome to EUI!
           </h1>
         </div>
