@@ -1,10 +1,10 @@
-import './App.css';
-import MyRouter from './router/index';
+import "./App.css";
+import MyRouter from "./router/index";
 
 export default function App() {
-  return (
-    <div>
-      <MyRouter />
-    </div>
-  );
+	return (
+		<div className="min-h-screen">
+			<MyRouter />
+		</div>
+	);
 }
