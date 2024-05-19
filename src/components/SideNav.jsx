@@ -1,6 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { UserTypes } from "../utils/constants";
+import { UserTypes } from "../lib/constants";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
