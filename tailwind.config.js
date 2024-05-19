@@ -10,6 +10,7 @@ module.exports = {
         customBlue: "#707EAE",
         darkenedBlue: "#2B3674",
         darkenedBlue2: "#1D2555",
+        pageColor: "#F4F7FE",
       },
     },
   },
