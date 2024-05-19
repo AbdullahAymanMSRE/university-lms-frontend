@@ -1,4 +1,3 @@
-import React from "react";
 import SideNav from "../../components/SideNav";
 import { UserTypes } from "../../lib/constants";
 import * as icons from "../../svgs/sidenav";
@@ -9,7 +8,7 @@ export default function Home() {
   const student = {
     name: "John Doe",
   };
-  const [toggle, setToggle] = React.useState(false);
+  const [toggle, setToggle] = useState(false);
   const toggleNav = () => setToggle(!toggle);
   const pageName = useLocation().pathname.split("/")[2];
   return (
