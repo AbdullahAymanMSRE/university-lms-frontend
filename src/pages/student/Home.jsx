@@ -3,12 +3,15 @@ import SideNav from "../../components/SideNav";
 import { UserTypes } from "../../utils/constants";
 import * as icons from "../../svgs/sidenav";
 import { Outlet } from "react-router";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
   const student = {
     name: "John Doe",
   };
   const [toggle, setToggle] = React.useState(false);
+  const toggleNav = () => setToggle(!toggle);
+  const pageName = useLocation().pathname.split("/")[2];
   return (
     <body className="bg-pageColor relative flex max-md:flex-col">
       <SideNav
@@ -45,10 +48,15 @@ export default function Home() {
           },
         ]}
         userType={UserTypes.STUDENT}
-        className={`${toggle ? "max-md:translate-x-0" : "max-md:-translate-x-full"}`}
+        className={`${
+          toggle ? "max-md:translate-x-0" : "max-md:-translate-x-full"
+        }`}
+        toggle={toggleNav}
       />
       <div
-        className={`fixed h-14 flex items-center justify-center max-md:z-[1000] ${toggle ? "max-md:right-4" : "max-md:left-4"}`}
+        className={`fixed h-20 flex items-center justify-center max-md:z-[1000] ${
+          toggle ? "max-md:right-4" : "max-md:left-4"
+        }`}
       >
         <button
           onClick={() => {
@@ -57,7 +65,7 @@ export default function Home() {
           className={`flex items-center justify-center
           `}
         >
-          <div className="hidden max-md:flex h-10 w-10 cursor-pointer items-center justify-center rounded-3xl bg-transparent p-2">
+          <div className="hidden h-10 w-10 cursor-pointer rounded-3xl bg-transparent p-2 max-md:flex max-md:items-center max-md:justify-center">
             <div className="space-y-2">
               <span
                 className={`block h-1 w-8 origin-center rounded-full ${
@@ -77,8 +85,8 @@ export default function Home() {
           </div>
         </button>
       </div>
-      <div className="hidden z-50 bg-primary text-2xl h-14 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0">
-        Dashboard
+      <div className="hidden z-50 bg-primary text-3xl h-20 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0">
+        {pageName === undefined ? "Dashboard" : pageName}
       </div>
       <div className="flex w-full p-7 flex-col gap-7 max-md:items-center max-md:p-4">
         <div className="font-bold max-md:self-start max-md:hidden">

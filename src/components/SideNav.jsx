@@ -1,13 +1,13 @@
+import React from "react";
 import { twMerge } from "tailwind-merge";
 import { UserTypes } from "../utils/constants";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
-export default function SideNav({ items, userType, className }) {
+export default function SideNav({ items, userType, className, toggle}) {
   const isStudent = userType === UserTypes.STUDENT;
   const bgClr = isStudent ? "bg-primary" : "bg-secondary";
   const textClr = isStudent ? "text-primary" : "text-secondary";
-
   return (
     <nav
       className={twMerge(
@@ -25,7 +25,7 @@ export default function SideNav({ items, userType, className }) {
       </div>
       <ul className="w-52 text-base flex flex-col gap-4">
         {items.map((item, index) => (
-          <li key={index} className={twMerge("")}>
+          <li key={index} onClick={toggle} className={twMerge("")}>
             <NavLink end to={item.url}>
               {({ isActive, isPending, isTransitioning }) => (
                 <div
