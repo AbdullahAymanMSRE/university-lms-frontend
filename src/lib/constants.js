@@ -4,4 +4,4 @@ export const UserTypes = {
 };
 
 export const TOKEN_STORAGE = "token";
-export const HOST = "";
+export const HOST = "https://university-lms-backend.onrender.com";
