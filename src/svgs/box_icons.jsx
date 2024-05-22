@@ -102,21 +102,118 @@ export function CourseIconSvg() {
   );
 }
 
-export function Arrow({color}) {
+export function Arrow({ color }) {
   return (
     <i className={`text-${color}`}>
+      <svg
+        width="18"
+        height="12"
+        viewBox="0 0 18 12"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.37114e-07 7L14.17 7L10.59 10.59L12 12L18 6L12 -5.24537e-07L10.59 1.41L14.17 5L6.11959e-07 5L4.37114e-07 7Z"
+          fill="currentColor"
+        />
+      </svg>
+    </i>
+  );
+}
+
+export function StudentsBoxSvg() {
+  return (
     <svg
-      width="18"
-      height="12"
-      viewBox="0 0 18 12"
+      width="57"
+      height="58"
+      viewBox="0 0 57 58"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle
+        cx="28.3481"
+        cy="28.9995"
+        r="28.0248"
+        fill="url(#paint0_linear_230_319)"
+      />
+      <g clip-path="url(#clip0_230_319)">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M33.8013 30.319C35.401 31.405 36.522 32.8763 36.522 34.838V38.3411H40.0251C40.6673 38.3411 41.1928 37.8157 41.1928 37.1734V34.838C41.1928 32.2924 37.0241 30.7861 33.8013 30.319Z"
+          fill="white"
+        />
+        <path
+          d="M24.845 28.9995C27.4246 28.9995 29.5158 26.9083 29.5158 24.3287C29.5158 21.7491 27.4246 19.6579 24.845 19.6579C22.2654 19.6579 20.1742 21.7491 20.1742 24.3287C20.1742 26.9083 22.2654 28.9995 24.845 28.9995Z"
+          fill="white"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M31.8511 28.9995C34.4318 28.9995 36.5219 26.9093 36.5219 24.3287C36.5219 21.7481 34.4318 19.6579 31.8511 19.6579C31.3023 19.6579 30.7885 19.7747 30.2981 19.9382C31.2673 21.1409 31.8511 22.6706 31.8511 24.3287C31.8511 25.9869 31.2673 27.5165 30.2981 28.7193C30.7885 28.8828 31.3023 28.9995 31.8511 28.9995Z"
+          fill="white"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M24.845 30.1672C21.7273 30.1672 15.5034 31.732 15.5034 34.838V37.1734C15.5034 37.8157 16.0289 38.3411 16.6711 38.3411H33.0189C33.6611 38.3411 34.1866 37.8157 34.1866 37.1734V34.838C34.1866 31.732 27.9628 30.1672 24.845 30.1672Z"
+          fill="white"
+        />
+      </g>
+      <defs>
+        <linearGradient
+          id="paint0_linear_230_319"
+          x1="0.323364"
+          y1="0.974762"
+          x2="56.3729"
+          y2="57.0243"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#30E0AB" />
+          <stop offset="1" stop-color="#30E0AB" />
+        </linearGradient>
+        <clipPath id="clip0_230_319">
+          <rect
+            width="28.0248"
+            height="28.0248"
+            fill="white"
+            transform="translate(14.3358 14.9872)"
+          />
+        </clipPath>
+      </defs>
+    </svg>
+  );
+}
+
+export function StudentsPathSvg() {
+  return (
+    <svg
+      width="63"
+      height="33"
+      viewBox="0 0 63 33"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M4.37114e-07 7L14.17 7L10.59 10.59L12 12L18 6L12 -5.24537e-07L10.59 1.41L14.17 5L6.11959e-07 5L4.37114e-07 7Z"
-        fill="currentColor"
+        d="M2.46411 29.7157C2.46411 29.7157 8.6154 31.5081 14.7665 29.7157C29.102 25.5385 24.4836 -1.0155 35.4933 5.99069C48.6834 14.3844 59.1705 13.9365 61.0159 1.98715"
+        stroke="url(#paint0_linear_230_335)"
+        stroke-width="3.00265"
+        stroke-linecap="round"
+        stroke-linejoin="round"
       />
+      <defs>
+        <linearGradient
+          id="paint0_linear_230_335"
+          x1="-34.5686"
+          y1="38.019"
+          x2="49.065"
+          y2="-12.892"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#30E0AB" />
+          <stop offset="1" stop-color="#30E0AB" />
+        </linearGradient>
+      </defs>
     </svg>
-    </i>
   );
 }
