@@ -4,10 +4,14 @@ import { UserTypes } from "../lib/constants";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
-export default function SideNav({ items, userType, className, toggle}) {
-  const isStudent = userType === UserTypes.STUDENT;
-  const bgClr = isStudent ? "bg-primary" : "bg-secondary";
-  const textClr = isStudent ? "text-primary" : "text-secondary";
+export default function SideNav({
+  items,
+  isStudent,
+  className,
+  toggle,
+  bgClr,
+  textClr,
+}) {
   return (
     <nav
       className={twMerge(

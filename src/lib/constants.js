@@ -1,6 +1,6 @@
 export const UserTypes = {
   STUDENT: "student",
-  TEACHER: "teacher",
+  INSTRUCTOR: "instructor",
 };
 
 export const TOKEN_STORAGE = "token";

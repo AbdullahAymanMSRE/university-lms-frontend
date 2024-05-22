@@ -3,38 +3,33 @@ import * as icons from "../../svgs/sidenav";
 import MainLayout from "../../components/MainLayout";
 
 export default function Home() {
-  const student = {
-    name: "John Doe",
+  const user = {
+    name: "Abdullah Ayman",
   };
 
   return (
     <MainLayout
-      user={student}
+      user={user}
       navUrls={[
         {
           text: "Dashboard",
-          url: "/student",
+          url: "/instructor",
           icon: icons.DashboardSvg,
         },
         {
           text: "Courses",
-          url: "/student/courses",
+          url: "/instructor/courses",
           icon: icons.CoursesSvg,
         },
         {
-          text: "My account",
-          url: "/student/account",
-          icon: icons.MyAccountSvg,
+          text: "Students",
+          url: "/instructor/students",
+          icon: icons.StudentsSvg,
         },
         {
-          text: "Files",
-          url: "/student/files",
-          icon: icons.FilesSvg,
-        },
-        {
-          text: "Settings",
-          url: "/student/settings",
-          icon: icons.SettingsSvg,
+          text: "Assignments",
+          url: "/instructor/assignments",
+          icon: icons.CalendarSvg,
         },
         {
           text: "Announcements",
@@ -42,7 +37,7 @@ export default function Home() {
           icon: icons.AnnouncementsSvg,
         },
       ]}
-      userType={UserTypes.STUDENT}
+      userType={UserTypes.INSTRUCTOR}
     />
   );
 }
