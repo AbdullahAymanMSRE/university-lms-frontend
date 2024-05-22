@@ -40,19 +40,17 @@ export default function MainLayout({ user, navUrls, userType }) {
             <div className="space-y-2">
               <span
                 className={cn(
-                  "block h-1 w-8 origin-center rounded-full transition-transform ease-in-out",
+                  "block h-1 w-8 origin-center rounded-full transition-transform ease-in-out bg-white",
                   {
                     [`${bgClr} w-8 translate-y-1.5 rotate-45`]: toggle,
-                    "bg-white": !toggle,
                   }
                 )}
               ></span>
               <span
                 className={cn(
-                  "block h-1 w-6 origin-center rounded-full transition-transform ease-in-out",
+                  "block h-1 w-6 origin-center rounded-full transition-transform ease-in-out bg-white",
                   {
-                    [`${bgClr} w-8 translate-y-1.5 rotate-45`]: toggle,
-                    "bg-white": !toggle,
+                    [`${bgClr} w-8 -translate-y-1.5 -rotate-45`]: toggle,
                   }
                 )}
               ></span>
