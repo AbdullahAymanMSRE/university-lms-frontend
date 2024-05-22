@@ -13,3 +13,8 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+/* in your global.css or similar */
+.parent:hover > .child:first-child {
+  @apply bg-red-500;
+}

@@ -54,7 +54,7 @@ export default function Home() {
         toggle={toggleNav}
       />
       <div
-        className={`fixed h-20 flex items-center justify-center max-md:z-[1000] ${
+        className={`fixed h-16 flex items-center justify-center max-md:z-[1000] ${
           toggle ? "max-md:right-4" : "max-md:left-4"
         }`}
       >
@@ -85,7 +85,7 @@ export default function Home() {
           </div>
         </button>
       </div>
-      <div className="hidden z-50 bg-primary text-3xl h-20 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0">
+      <div className="hidden z-50 bg-primary text-3xl h-16 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0">
         {pageName === undefined ? "Dashboard" : pageName}
       </div>
       <div className="flex w-full p-7 flex-col gap-7 max-md:items-center max-md:p-4">

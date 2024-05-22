@@ -1,5 +1,5 @@
-import Coursebar from "../../components/Coursebar";
-import WhiteBox from "../../components/Whitebox";
+import CourseBar from "../../components/CourseBar";
+import WhiteBox from "../../components/WhiteBox";
 import * as icons from "../../svgs/box_icons";
 import Link from "../../components/Link";
 import Task from "../../components/Task";
@@ -18,9 +18,9 @@ export default function Dashboard() {
         <div className="max-w-lg flex-1 h-80 bg-white rounded-3xl px-7 py-5 text-xl gap-5  relative max-lg:basis-full">
           <h2 className="font-bold mb-5">My Courses</h2>
           <div className="flex flex-col gap-5">
-            <Coursebar course="History" author="30SS" />
-            <Coursebar course="Math" author="Amarico" />
-            <Coursebar course="Science" author="Abood" />
+            <CourseBar course="History" author="30SS" />
+            <CourseBar course="Math" author="Amarico" />
+            <CourseBar course="Science" author="Abood" />
             <Link text="View all" color="primary" />
           </div>
         </div>
