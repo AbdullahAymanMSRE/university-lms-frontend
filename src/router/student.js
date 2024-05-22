@@ -1,5 +1,6 @@
 import Courses from "../pages/student/Courses";
 import Dashboard from "../pages/student/Dashboard";
+import Account from "../pages/student/Account";
 
 const studentRoutes = [
   {
@@ -11,12 +12,12 @@ const studentRoutes = [
     element: <Courses />,
   },
   {
-    path: "files",
-    element: <div>Files page</div>,
+    path: "account",
+    element: <Account />,
   },
   {
-    path: "account",
-    element: <div>Account page</div>,
+    path: "files",
+    element: <div>Files page</div>,
   },
   {
     path: "settings",
