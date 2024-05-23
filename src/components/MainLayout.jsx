@@ -25,7 +25,7 @@ export default function MainLayout({ user, navUrls, userType }) {
         textClr={textClr}
       />
       <div
-        className={`fixed h-16 flex items-center justify-center max-md:z-[1000] ${
+        className={`fixed h-11 flex items-center justify-center max-md:z-[1000] ${
           toggle ? "max-md:right-4" : "max-md:left-4"
         }`}
       >
@@ -59,7 +59,7 @@ export default function MainLayout({ user, navUrls, userType }) {
         </button>
       </div>
       <div
-        className={`${bgClr} hidden z-50 text-3xl h-16 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0`}
+        className={`${bgClr} hidden z-50 text-xl h-11 w-full text-white uppercase max-md:flex max-md:justify-center max-md:items-center sticky top-0`}
       >
         {pageName === undefined ? "Dashboard" : pageName}
       </div>
