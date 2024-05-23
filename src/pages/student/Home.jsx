@@ -22,19 +22,14 @@ export default function Home() {
           icon: icons.CoursesSvg,
         },
         {
-          text: "My account",
+          text: "Account",
           url: "/student/account",
           icon: icons.MyAccountSvg,
         },
         {
-          text: "Files",
-          url: "/student/files",
-          icon: icons.FilesSvg,
-        },
-        {
-          text: "Settings",
-          url: "/student/settings",
-          icon: icons.SettingsSvg,
+          text: "Assignments",
+          url: "/student/assignments",
+          icon: icons.CalendarSvg,
         },
         {
           text: "Announcements",

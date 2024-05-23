@@ -22,20 +22,17 @@ export default function Dashboard() {
             <Task
               taskName={"History Assignment"}
               beforeColor={"primary"}
-              startTime={"10:00 AM"}
-              endTime={"11:00 AM"}
+              deadLine={"10:00 AM"}
             />
             <Task
               taskName={"History Assignment"}
               beforeColor={"primary"}
-              startTime={"10:00 AM"}
-              endTime={"11:00 AM"}
+              deadLine={"10:00 AM"}
             />
             <Task
               taskName={"History Assignment"}
               beforeColor={"primary"}
-              startTime={"10:00 AM"}
-              endTime={"11:00 AM"}
+              deadLine={"10:00 AM"}
             />
           </div>
           <Link text="View all tasks" color="primary" />

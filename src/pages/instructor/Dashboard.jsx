@@ -1,5 +1,4 @@
 import CoursesShortList from "../../components/CoursesShortList";
-import WhiteBox from "../../components/WhiteBox";
 import { StudentsBoxSvg, StudentsPathSvg } from "../../svgs/box_icons";
 
 export default function Dashboard() {

@@ -3,6 +3,8 @@ import { twMerge } from "tailwind-merge";
 import { UserTypes } from "../lib/constants";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+import { isAction } from "@reduxjs/toolkit";
+import { useEffect, useState } from "react";
 
 export default function SideNav({
   items,
@@ -12,10 +14,22 @@ export default function SideNav({
   bgClr,
   textClr,
 }) {
+  const [activeItemName, setActiveItemName] = useState("");
+
+  useEffect(() => {
+    // Set the initial active item based on the current URL
+    const activeItem = items.find((item) =>
+      window.location.pathname.endsWith(item.url)
+    );
+    if (activeItem) {
+      setActiveItemName(activeItem.text);
+    }
+  }, [items]);
+
   return (
     <nav
       className={twMerge(
-        `bg-white p-10 flex flex-col gap-16 transition z-[999] min-h-screen ease-in-out max-md:fixed max-md:left-0 max-md:top-0 max-md:w-full`,
+        `bg-white p-10 flex flex-col gap-16 transition z-[999] min-h-screen ease-in-out fixed max-md:fixed max-md:left-0 max-md:top-0 max-md:w-full`,
         className
       )}
     >
@@ -24,12 +38,21 @@ export default function SideNav({
         <div className={`${textClr} text-2xl leading-5 font-bold`}>
           {isStudent ? "Student" : "Instructor"}
           <br />
-          <span className="text-xs font-medium uppercase">Dashboard</span>
+          <span className="text-xs font-medium uppercase">
+            {activeItemName}
+          </span>
         </div>
       </div>
       <ul className="w-52 text-base flex flex-col gap-4">
         {items.map((item, index) => (
-          <li key={index} onClick={toggle} className={twMerge("")}>
+          <li
+            key={index}
+            onClick={() => {
+              toggle();
+              setActiveItemName(item.text);
+            }}
+            className={twMerge("")}
+          >
             <NavLink end to={item.url}>
               {({ isActive, isPending, isTransitioning }) => (
                 <div

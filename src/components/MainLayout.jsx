@@ -63,7 +63,7 @@ export default function MainLayout({ user, navUrls, userType }) {
       >
         {pageName === undefined ? "Dashboard" : pageName}
       </div>
-      <div className="flex w-full p-7 flex-col gap-7 max-md:items-center max-md:p-4">
+      <div className="flex w-full p-7 flex-col gap-7 max-md:items-center max-md:p-4 md:ml-72">
         <div className="font-bold max-md:self-start max-md:hidden">
           <p className="text-sm text-customBlue mb-3 ">Hi {user.name},</p>
           <h1 className="text-4xl text-darkenedBlue">Welcome to EUI!</h1>
