@@ -1,11 +1,18 @@
+import { useSignupMutation } from "../api/apiSlice";
+
 export default function Login() {
+	const [signup, { isLoading }] = useSignupMutation();
+
 	return (
 		<div className="relative min-h-screen flex flex-col px-4 justify-center items-center bg-gray-100">
 			<div className="relative sm:max-w-sm w-full">
 				<div className="card bg-secondary shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
 				<div className="card bg-primary shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
 				<div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-					<label for="" className="block mt-3 text-sm text-gray-700 text-center font-semibold">
+					<label
+						for=""
+						className="block mt-3 text-sm text-gray-700 text-center font-semibold"
+					>
 						Login
 					</label>
 					<form method="#" action="#" className="mt-10">
