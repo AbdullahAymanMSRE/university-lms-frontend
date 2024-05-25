@@ -1,8 +1,18 @@
 import { Plus } from "lucide-react";
 import CustomTable from "../../components/CustomTable";
+import { useGetCoursesQuery } from "../../api/instructorApiSlice";
+import ActionButton from "../../components/ActionButton";
 
 export default function Courses() {
-  const titles = ["Id", "Name", "Credit Hours", "Number of Students"];
+  const titles = [
+    "Id",
+    "Title",
+    "Credit Hours",
+    "Number of Students",
+    "Actions",
+  ];
+  const { data: courses } = useGetCoursesQuery();
+
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
@@ -30,14 +40,17 @@ export default function Courses() {
             handle: (item) => console.log("Edit", item),
           },
         ]}
-        data={[
-          {
-            id: 1,
-            name: "Datastructures & Algorithms",
-            creditHours: 4,
-            numberOfStudents: 78,
-          },
-        ]}
+        data={courses?.map((course) => ({
+          ...course,
+          number_of_students: course.students_registered.length,
+          actions: (
+            <div class="flex items-center gap-x-4">
+              {/*  TODO: Add onClick               */}
+              <ActionButton className="bg-red-500">Delete</ActionButton>
+              <ActionButton className="bg-red-500">Edit</ActionButton>
+            </div>
+          ),
+        }))}
       />
     </div>
   );

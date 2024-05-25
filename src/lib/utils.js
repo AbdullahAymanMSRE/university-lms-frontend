@@ -5,17 +5,12 @@ export function cn(...inputs) {
 	return twMerge(clsx(inputs));
 }
 
-export function toCamelCase(str) {
-	return str
-	  // Split the string into words using a regular expression that looks for spaces
-	  .split(' ')
-	  // Map each word to a function that will handle the capitalization
-	  .map((word, index) =>
-		// If it's the first word, convert it to lower case
-		index === 0 ? word.toLowerCase() :
-		// Otherwise, convert the first letter to upper case and add the rest of the word in lower case
-		word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-	  )
-	  // Join all the words back into a single string
-	  .join('');
-  }
+export function toSnakeCase(inputStr) {
+    // Split the input string into words based on non-alphanumeric characters
+    const words = inputStr.split(/[^a-zA-Z0-9]/).filter(Boolean);
+    
+    // Join the words with underscores and convert to lowercase
+    const snakeCaseStr = words.join('_').toLowerCase();
+    
+    return snakeCaseStr;
+}

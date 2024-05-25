@@ -1,13 +1,18 @@
 import CoursesShortList from "../../components/CoursesShortList";
 import { StudentsBoxSvg, StudentsPathSvg } from "../../svgs/box_icons";
+import { useGetCoursesQuery } from "../../api/instructorApiSlice";
 
 export default function Dashboard() {
+  const { data: courses } = useGetCoursesQuery();
+
   return (
     <div className="flex flex-col gap-7">
       <div className="flex gap-5">
         <div className="w-64 rounded-2xl bg-white px-6 py-5 gap-5 max-w-lg max-md:w-full">
           <p className="text-text text-base font-light">Live Courses</p>
-          <p className="text-darkenedBlue2 text-2xl font-bold">13</p>
+          <p className="text-darkenedBlue2 text-2xl font-bold">
+            {courses?.length ?? 0}
+          </p>
         </div>
         <div className="flex gap-4 items-center rounded-2xl bg-white px-5 py-5 max-w-lg max-md:w-full">
           <StudentsBoxSvg />
@@ -18,7 +23,7 @@ export default function Dashboard() {
           <StudentsPathSvg />
         </div>
       </div>
-      <CoursesShortList />
+      <CoursesShortList courses={courses} instructor />
     </div>
   );
 }

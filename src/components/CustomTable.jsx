@@ -1,4 +1,4 @@
-import { toCamelCase } from "../lib/utils";
+import { toSnakeCase } from "../lib/utils";
 import { cn } from "../lib/utils";
 
 export default function CustomTable({
@@ -21,30 +21,24 @@ export default function CustomTable({
               {title}
             </th>
           ))}
-
-          {actions ? (
-            <th scope="col" class="relative py-3.5 px-4">
-              <span class="sr-only">Actions</span>
-            </th>
-          ) : null}
         </tr>
       </thead>
       <tbody class="bg-white divide-y divide-gray-200 ">
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <tr key={index}>
             {titles.map((key) => (
               <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-                {item[toCamelCase(key)]}
+                {item[toSnakeCase(key)]}
               </td>
             ))}
-            {actions && (
+            {/* {actions && (
               <td class="px-4 py-4 text-sm whitespace-nowrap">
                 <div class="flex items-center gap-x-4">
                   {actions.map((action) => (
                     <button
                       class={cn(
                         "text-white px-4 py-2 rounded transition-all duration-200 hover:scale-110 focus:outline-none",
-                        action.className
+                        action.className(item)
                       )}
                       onClick={() => action.handle(item)}
                     >
@@ -53,7 +47,7 @@ export default function CustomTable({
                   ))}
                 </div>
               </td>
-            )}
+            )} */}
           </tr>
         ))}
       </tbody>
