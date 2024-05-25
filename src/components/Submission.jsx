@@ -1,8 +1,11 @@
-
-export default function Submission({ toggle }) {
+export default function Submission({ modal, setModal }) {
   return (
-    <section>
-      <div class="bg-gray-500 h-screen w-screen sm:px-8 md:px-16 sm:py-8">
+    <section
+      className={`absolute top-0 left-0 z-[10000] min-h-full h-screen w-full justify-center bg-black/70 ${
+        modal ? "flex" : "hidden"
+      }`}
+    >
+      <div class="h-3/4 w-3/4 sm:px-8 md:px-16 sm:py-8">
         <main class="container mx-auto max-w-screen-lg h-full">
           <article
             aria-label="File Upload Modal"
@@ -52,7 +55,7 @@ export default function Submission({ toggle }) {
               <ul id="gallery" class="flex flex-1 flex-wrap -m-1">
                 <li
                   id="empty"
-                  class="h-full w-full text-center flex flex-col justify-center items-center"
+                  class="h-full w-full text-center flex flex-col items-center justify-center"
                 >
                   <img
                     class="mx-auto w-32"
@@ -65,7 +68,6 @@ export default function Submission({ toggle }) {
                 </li>
               </ul>
             </section>
-
             <footer class="flex justify-end px-8 pb-8 pt-4">
               <button
                 id="submit"
@@ -74,6 +76,7 @@ export default function Submission({ toggle }) {
                 Upload now
               </button>
               <button
+                onClick={() => setModal(!modal)}
                 id="cancel"
                 class="ml-3 rounded-sm px-3 py-1 hover:bg-gray-300 focus:shadow-outline focus:outline-none"
               >
@@ -83,7 +86,6 @@ export default function Submission({ toggle }) {
           </article>
         </main>
       </div>
-
       <template id="file-template">
         <li class="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24">
           <article
@@ -96,7 +98,7 @@ export default function Submission({ toggle }) {
             />
 
             <section class="flex flex-col rounded-md text-xs break-words w-full h-full z-20 absolute top-0 py-2 px-3">
-              <h1 class="flex-1 group-hover:text-blue-800">Heading Amar</h1>
+              <h1 class="flex-1 group-hover:text-blue-800"></h1>
               <div class="flex">
                 <span class="p-1 text-blue-800">
                   <i>

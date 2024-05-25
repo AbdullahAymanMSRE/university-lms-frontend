@@ -12,6 +12,15 @@ module.exports = {
         darkenedBlue2: "#1D2555",
         pageColor: "#F4F7FE",
       },
+      keyframes: {
+        shine: {
+          "0%": { transform: "translateX(0) rotate(6deg)" },
+          "100%": { transform: "translateX(-1000px) rotate(6deg)"},
+        },
+      },
+      animation: {
+        shine: "shine 0.5s ease-in-out",
+      },
     },
   },
   plugins: [],

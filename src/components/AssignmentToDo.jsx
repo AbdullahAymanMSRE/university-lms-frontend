@@ -1,7 +1,6 @@
-// import { useState } from "react";
+import { useState } from "react";
 
-export default function AssignmentToDo({ courseName, number, dueTime }) {
-//   const [toggle, setToggle] = useState(false);
+export default function AssignmentToDo({ courseName, number, dueTime, modal, setModal}) {
   return (
     <section className="">
       <div className="flex max-sm:flex-col">
@@ -19,7 +18,7 @@ export default function AssignmentToDo({ courseName, number, dueTime }) {
             </div>
           </div>
           <button
-            //   onClick={() => setToggle(!toggle)}
+          onClick={() => setModal(!modal)}
             className={`h-fit bg-primary text-white rounded-lg px-4 py-2`}
           >
             Submit

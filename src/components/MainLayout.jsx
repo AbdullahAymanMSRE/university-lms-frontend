@@ -3,10 +3,14 @@ import { useLocation, Outlet } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { UserTypes } from "../lib/constants";
 import SideNav from "./SideNav";
+import Submission from "./Submission";
 
 export default function MainLayout({ user, navUrls, userType }) {
   const [toggle, setToggle] = useState(false);
   const pageName = useLocation().pathname.split("/")[2];
+  const [modal, setModal] = useState(false);
+
+  
 
   const isStudent = userType === UserTypes.STUDENT;
   const bgClr = isStudent ? "bg-primary" : "bg-secondary";
@@ -68,7 +72,10 @@ export default function MainLayout({ user, navUrls, userType }) {
           <p className="text-sm text-customBlue mb-3 ">Hi {user.name},</p>
           <h1 className="text-4xl text-darkenedBlue">Welcome to EUI!</h1>
         </div>
-        <Outlet />
+        <Submission
+        setModal={setModal}
+        modal={modal} />
+        <Outlet context={{modal, setModal}} />
       </div>
     </div>
   );
