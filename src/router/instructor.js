@@ -7,9 +7,24 @@ const instructorRoutes = [
     element: <Dashboard />,
   },
   {
-    path: 'courses',
-    element: <Courses />
-  }
+    path: "courses",
+    element: <Courses />,
+  },
+
+  {
+    path: "students",
+    element: <div>Students</div>,
+  },
+
+  {
+    path: "assignments",
+    element: <div>Assignments</div>,
+  },
+
+  {
+    path: "announcements",
+    element: <div>Announcements</div>,
+  },
 ];
 
 export default instructorRoutes;
