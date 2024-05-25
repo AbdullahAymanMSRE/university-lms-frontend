@@ -34,29 +34,7 @@ export const apiSlice = createApi({
                 body: data,
             }),
         }),
-        createCourse: builder.mutation({
-            query: (data) => ({
-                url: "instructor/courses",
-                method: "POST",
-                body: data,
-            }),
-        }),
-        createAssignment: builder.mutation({
-            query: (data) => ({
-                url: "instructor/assignments",
-                method: "POST",
-                body: data,
-            }),
-        }),
-        createAnnouncement: builder.mutation({
-            query: (data) => ({
-                url: "instructor/announcements",
-                method: "POST",
-                body: data,
-            }),
-        }),
     }),
 });
 
-export const { useSignupMutation, useLoginMutation, useCreateCourseMutation } =
-    apiSlice;
+export const { useSignupMutation, useLoginMutation } = apiSlice;

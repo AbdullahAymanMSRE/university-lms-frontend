@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 
 export default function Courses() {
     const titles = [
-    "Id",
-    "Title",
-    "Credit Hours",
-    "Number of Students",
-    "Actions",
-  ];
-  const { data: courses } = useGetCoursesQuery();
+        "Id",
+        "Title",
+        "Credit Hours",
+        "Number of Students",
+        "Actions",
+    ];
+    const { data: courses } = useGetCoursesQuery();
 
     return (
         <div>
@@ -32,32 +32,25 @@ export default function Courses() {
                 </Link>
             </div>
 
-      <CustomTable
-        titles={titles}
-        actions={[
-          {
-            label: "Delete",
-            className: "bg-red-500",
-            handle: (item) => console.log("Delete", item),
-          },
-          {
-            label: "Edit",
-            className: "bg-blue-500",
-            handle: (item) => console.log("Edit", item),
-          },
-        ]}
-        data={courses?.map((course) => ({
-          ...course,
-          number_of_students: course.students_registered.length,
-          actions: (
-            <div class="flex items-center gap-x-4">
-              {/*  TODO: Add onClick               */}
-              <ActionButton className="bg-red-500">Delete</ActionButton>
-              <ActionButton className="bg-red-500">Edit</ActionButton>
-            </div>
-          ),
-        }))}
-      />
-    </div>
-  );
+            <CustomTable
+                titles={titles}
+                data={courses?.map((course) => ({
+                    ...course,
+                    number_of_students: course.students_registered.length,
+                    link: `/instructor/course/${course.id}`,
+                    actions: (
+                        <div class="flex items-center gap-x-4">
+                            {/*  TODO: Add onClick               */}
+                            <ActionButton className="bg-red-500">
+                                Delete
+                            </ActionButton>
+                            <ActionButton className="bg-red-500">
+                                Edit
+                            </ActionButton>
+                        </div>
+                    ),
+                }))}
+            />
+        </div>
+    );
 }
