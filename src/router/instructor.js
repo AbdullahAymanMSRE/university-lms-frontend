@@ -1,5 +1,6 @@
 import Courses from "../pages/instructor/Courses";
 import Dashboard from "../pages/instructor/Dashboard";
+import Students from "../pages/instructor/Students";
 
 const instructorRoutes = [
   {
@@ -7,24 +8,13 @@ const instructorRoutes = [
     element: <Dashboard />,
   },
   {
-    path: "courses",
-    element: <Courses />,
+    path: 'courses',
+    element: <Courses />
   },
-
   {
-    path: "students",
-    element: <div>Students</div>,
-  },
-
-  {
-    path: "assignments",
-    element: <div>Assignments</div>,
-  },
-
-  {
-    path: "announcements",
-    element: <div>Announcements</div>,
-  },
+    path: 'students',
+    element: <Students />
+  }
 ];
 
 export default instructorRoutes;
