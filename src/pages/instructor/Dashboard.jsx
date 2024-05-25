@@ -1,9 +1,9 @@
 import CoursesShortList from "../../components/CoursesShortList";
 import { StudentsBoxSvg, StudentsPathSvg } from "../../svgs/box_icons";
-import { useGetCoursesQuery } from "../../api/instructorApiSlice";
+import { useGetInstructorCoursesQuery } from "../../api/instructorApiSlice";
 
 export default function Dashboard() {
-  const { data: courses } = useGetCoursesQuery();
+  const { data: courses } = useGetInstructorCoursesQuery();
 
   return (
     <div className="flex flex-col gap-7">

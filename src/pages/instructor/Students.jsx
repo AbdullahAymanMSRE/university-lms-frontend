@@ -2,14 +2,14 @@ import { useState } from "react";
 import CustomTable from "../../components/CustomTable";
 import { cn } from "../../lib/utils";
 import {
-  useGetCoursesQuery,
+  useGetInstructorCoursesQuery,
   useGetStudentsQuery,
   useAssignStudentToCourseMutation,
 } from "../../api/instructorApiSlice";
 import ActionButton from "../../components/ActionButton";
 
 export default function Students() {
-  const { data: courses } = useGetCoursesQuery();
+  const { data: courses } = useGetInstructorCoursesQuery();
   const { data: students } = useGetStudentsQuery();
   const [assignStudentToCourse, {}] = useAssignStudentToCourseMutation();
   const [selectedCourse, setSelectedCourse] = useState(null);

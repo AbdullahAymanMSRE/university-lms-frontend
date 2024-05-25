@@ -3,12 +3,12 @@ import * as icons from "../../svgs/box_icons";
 import Link from "../../components/Link";
 import Task from "../../components/Task";
 import CoursesShortList from "../../components/CoursesShortList";
-import { useGetCoursesQuery } from "../../api/studentApiSlice";
+import { useGetStudentCoursesQuery } from "../../api/studentApiSlice";
 
 export default function Dashboard() {
   const tasks = 21;
 
-  const { data: courses } = useGetCoursesQuery();
+  const { data: courses } = useGetStudentCoursesQuery();
 
   return (
     <section className="h-screen flex flex-col gap-6 rounded-3xl max-md:items-center">

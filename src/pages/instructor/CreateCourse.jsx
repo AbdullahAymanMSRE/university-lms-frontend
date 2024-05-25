@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCreateCourseMutation } from "../../api/apiSlice";
+import { useCreateCourseMutation } from "../../api/instructorApiSlice";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +13,8 @@ export default function CreateCourse() {
     const handleCreateCourse = async (e) => {
         e.preventDefault();
         createCourse({
-            name: courseName,
-            credits: creditsHours,
+            title: courseName,
+            credit_hours: creditsHours,
         });
     };
 
