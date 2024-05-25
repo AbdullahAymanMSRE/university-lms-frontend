@@ -1,56 +1,50 @@
+import { useLocation } from "react-router";
 import { toSnakeCase } from "../lib/utils";
 import { cn } from "../lib/utils";
+import { Link } from "react-router-dom";
 
 export default function CustomTable({
-  titles,
-  dataKeys,
-  data,
-  actions,
-  handleDelete,
-  handleUpdate,
+    titles,
+    dataKeys,
+    data,
+    actions,
+    handleDelete,
+    handleUpdate,
 }) {
-  return (
-    <table class="min-w-full divide-y divide-gray-200 rounded-lg overflow-hidden shadow">
-      <thead class="bg-gray-50 ">
-        <tr>
-          {titles.map((title) => (
-            <th
-              scope="col"
-              class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
-            >
-              {title}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200 ">
-        {data?.map((item, index) => (
-          <tr key={index}>
-            {titles.map((key) => (
-              <td class="px-4 py-4 text-sm text-gray-500 whitespace-nowrap">
-                {item[toSnakeCase(key)]}
-              </td>
-            ))}
-            {/* {actions && (
-              <td class="px-4 py-4 text-sm whitespace-nowrap">
-                <div class="flex items-center gap-x-4">
-                  {actions.map((action) => (
-                    <button
-                      class={cn(
-                        "text-white px-4 py-2 rounded transition-all duration-200 hover:scale-110 focus:outline-none",
-                        action.className(item)
-                      )}
-                      onClick={() => action.handle(item)}
-                    >
-                      {action.label}
-                    </button>
-                  ))}
-                </div>
-              </td>
-            )} */}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+    return (
+        <table class="min-w-full divide-y divide-gray-200 overflow-hidden rounded-lg shadow">
+            <thead class="bg-gray-50 ">
+                <tr>
+                    {titles.map((title) => (
+                        <th
+                            scope="col"
+                            class="px-4 py-3.5 text-left text-sm font-normal text-gray-500 rtl:text-right "
+                        >
+                            {title}
+                        </th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white ">
+                {data?.map((item, index) => {
+                    const tr = (
+                        <tr key={index}>
+                            {titles.map((key) => (
+                                <td class="whitespace-nowrap px-4 py-4 text-sm text-gray-500">
+                                    {item[toSnakeCase(key)]}
+                                </td>
+                            ))}
+                        </tr>
+                    );
+                    if (item.link)
+                        return (
+                            <Link to={item.link} className="contents">
+                                {tr}
+                            </Link>
+                        );
+                    return tr;
+                })}
+            </tbody>
+        </table>
+    );
 }
