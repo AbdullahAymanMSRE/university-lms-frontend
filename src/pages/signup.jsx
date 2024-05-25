@@ -1,130 +1,172 @@
 import { useSignupMutation } from "../api/apiSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "../lib/utils";
+import { Link } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner";
+import useUserStore from "../store/userStore";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { TOKEN_STORAGE } from "../lib/constants";
 
 export default function Signup() {
-	const [signup, { isLoading }] = useSignupMutation();
-	const [role, setRole] = useState("student");
-	const [faculty, setFaculty] = useState("engineering");
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+    const [signup, { data, isLoading, isError, error }] = useSignupMutation();
+    const [role, setRole] = useState("student");
+    const [faculty, setFaculty] = useState("engineering");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const setUser = useUserStore((state) => state.setUser);
+    const navigate = useNavigate();
 
-	const handleSignup = async () => {
-		signup({
-			role: role,
-			name: name,
-			email: email,
-			faculty: faculty,
-			password: password,
-		});
-	};
+    const handleSignup = async (e) => {
+        e.preventDefault();
+        signup({
+            role: role,
+            name: name,
+            email: email,
+            faculty: faculty,
+            password: password,
+        });
+    };
 
-	return (
-		<div className="relative min-h-screen flex flex-col px-4 justify-center items-center bg-gray-100">
-			<div className="relative sm:max-w-sm w-full">
-				<div className="card bg-secondary shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
-				<div className="card bg-primary shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
-				<div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-					<div className="block mt-3 text-sm text-gray-700 text-center font-semibold">
-						Signup
-					</div>
-					<div className="mt-10 flex flex-col gap-6">
-						<div>
-							<input
-								type="text"
-								name="name"
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-								placeholder="Enter your name"
-								className="mt-1 block w-full border-none bg-gray-100 rounded-xl shadow-lg focus:outline-none px-3 py-2"
-							/>
-						</div>
+    useEffect(() => {
+        if (data) {
+            setUser(data);
+            toast.success("User created successfully");
+            localStorage.setItem(TOKEN_STORAGE, data.token);
+            if (data.role === "student") {
+                navigate("/student");
+            } else {
+                navigate("/instructor");
+            }
+        }
+    }, [data]);
 
-						<div>
-							<input
-								type="email"
-								name="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Enter your email"
-								className="mt-1 block w-full border-none bg-gray-100 rounded-xl shadow-lg focus:outline-none px-3 py-2"
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								name="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder="Enter your password"
-								className="mt-1 block w-full border-none bg-gray-100 rounded-xl shadow-lg focus:outline-none px-3 py-2"
-							/>
-						</div>
-						<div className="grid sm:grid-cols-2 gap-8">
-							<button
-								className={cn(
-									"p-2 text-center border rounded-xl shadow-lg transition hover:border-primary text-primary",
-									{
-										"border-primary text-primary":
-											role === "student",
-									}
-								)}
-								onClick={() => setRole("student")}
-							>
-								Student
-							</button>
-							<button
-								className={cn(
-									"p-2 text-center border rounded-xl shadow-lg transition hover:border-primary text-primary",
-									{
-										"border-primary text-primary":
-											role === "instructor",
-									}
-								)}
-								onClick={() => setRole("instructor")}
-							>
-								Instructor
-							</button>
-						</div>
-						<div className="grid gap-2">
-							<button
-								className={cn(
-									"p-2 text-center border rounded-xl shadow-lg transition hover:border-primary text-primary",
-									{
-										"border-primary text-primary":
-											faculty === "engineering",
-									}
-								)}
-								onClick={() => setFaculty("engineering")}
-							>
-								Engineering
-							</button>
-							<button
-								className={cn(
-									"p-2 text-center border rounded-xl shadow-lg transition hover:border-primary text-primary",
-									{
-										"border-primary text-primary":
-											faculty === "computer-science",
-									}
-								)}
-								onClick={() => setFaculty("computer-science")}
-							>
-								Computer Science
-							</button>
-						</div>
+    useEffect(() => {
+        if (isError) {
+            toast.error(error.data.error);
+        }
+    }, [isError]);
 
-						<div>
-							<button
-								onClick={handleSignup}
-								className="bg-primary w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-							>
-								Signup
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+    return (
+        <div className="relative flex min-h-screen flex-col items-center justify-center bg-gray-100 px-4">
+            <div className="relative w-full sm:max-w-md">
+                <div className="card absolute h-full w-full -rotate-6 transform rounded-3xl bg-secondary shadow-lg"></div>
+                <div className="card absolute h-full w-full rotate-6 transform rounded-3xl bg-primary shadow-lg"></div>
+                <div className="relative w-full rounded-3xl bg-gray-100 px-6 py-4 shadow-md">
+                    <div className="mt-3 block text-center text-2xl font-semibold text-gray-700">
+                        Signup
+                    </div>
+                    <form
+                        onSubmit={handleSignup}
+                        className="mt-10 flex flex-col gap-6"
+                    >
+                        <input
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Enter your name"
+                            className="block w-full rounded-lg border-none bg-gray-100 px-4 py-3 shadow focus:outline-none"
+                        />
+
+                        <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            className="block w-full rounded-lg border-none bg-gray-100 px-4 py-3 shadow focus:outline-none"
+                        />
+
+                        <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter your password"
+                            className="block w-full rounded-lg border-none bg-gray-100 px-4 py-3 shadow focus:outline-none"
+                        />
+
+                        <div className="grid gap-8 sm:grid-cols-2">
+                            <button
+                                type="button"
+                                className={cn(
+                                    "rounded-lg border p-2 text-center text-primary shadow transition hover:border-primary",
+                                    {
+                                        "border-primary text-primary":
+                                            role === "student",
+                                    },
+                                )}
+                                onClick={() => setRole("student")}
+                            >
+                                Student
+                            </button>
+                            <button
+                                type="button"
+                                className={cn(
+                                    "rounded-lg border p-2 text-center text-primary shadow transition hover:border-primary",
+                                    {
+                                        "border-primary text-primary":
+                                            role === "instructor",
+                                    },
+                                )}
+                                onClick={() => setRole("instructor")}
+                            >
+                                Instructor
+                            </button>
+                        </div>
+                        <div className="grid gap-2">
+                            <button
+                                type="button"
+                                className={cn(
+                                    "rounded-lg border p-2 text-center text-primary shadow transition hover:border-primary",
+                                    {
+                                        "border-primary text-primary":
+                                            faculty === "engineering",
+                                    },
+                                )}
+                                onClick={(e) => setFaculty("engineering")}
+                            >
+                                Engineering
+                            </button>
+                            <button
+                                type="button"
+                                className={cn(
+                                    "rounded-lg border p-2 text-center text-primary shadow transition hover:border-primary",
+                                    {
+                                        "border-primary text-primary":
+                                            faculty === "computer-science",
+                                    },
+                                )}
+                                onClick={() => setFaculty("computer-science")}
+                            >
+                                Computer Science
+                            </button>
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                className="hover:-translate-x flex w-full transform items-center justify-center rounded-xl bg-primary py-3 text-white shadow-xl transition duration-500 ease-in-out  hover:scale-105 hover:shadow-inner focus:outline-none"
+                            >
+                                {isLoading ? (
+                                    <LoadingSpinner className="fill-primary text-white" />
+                                ) : (
+                                    "Sign Up"
+                                )}
+                            </button>
+                        </div>
+                    </form>
+                    <div className="my-3 text-center font-medium">OR</div>
+                    <Link
+                        to="/login"
+                        className="block transform rounded-lg border border-primary py-3 text-center text-primary shadow-xl transition duration-500 ease-in-out hover:scale-105 hover:bg-primary  hover:text-white hover:shadow-inner focus:outline-none"
+                    >
+                        Login
+                    </Link>
+                </div>
+            </div>
+        </div>
+    );
 }
