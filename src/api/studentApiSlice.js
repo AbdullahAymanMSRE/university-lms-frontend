@@ -4,7 +4,7 @@ const baseUrl = 'student'
 
 export const studentApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCourses: builder.query({
+    getStudentCourses: builder.query({
       query: () => baseUrl + '/courses',
     }),
 
@@ -14,4 +14,4 @@ export const studentApiSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetCoursesQuery } = studentApiSlice
+export const { useGetStudentCoursesQuery } = studentApiSlice

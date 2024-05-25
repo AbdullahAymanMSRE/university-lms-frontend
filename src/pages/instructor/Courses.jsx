@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import CustomTable from "../../components/CustomTable";
-import { useGetCoursesQuery } from "../../api/instructorApiSlice";
+import { useGetInstructorCoursesQuery } from "../../api/instructorApiSlice";
 import ActionButton from "../../components/ActionButton";
 import { Link } from "react-router-dom";
 
@@ -12,7 +12,7 @@ export default function Courses() {
     "Number of Students",
     "Actions",
   ];
-  const { data: courses } = useGetCoursesQuery();
+  const { data: courses } = useGetInstructorCoursesQuery();
 
     return (
         <div>

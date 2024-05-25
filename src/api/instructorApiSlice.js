@@ -4,7 +4,7 @@ const baseUrl = 'instructor'
 
 export const instructorApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getCourses: builder.query({
+    getInstructorCourses: builder.query({
       query: () => baseUrl + '/courses',
       providesTags: ['courses']
     }),
@@ -18,7 +18,7 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
 
     assignStudentToCourse: builder.mutation({
       query: (student_id, course_id) => ({
-        url: baseUrl + '/assign_student',
+        url: baseUrl + '/courses/assign_student',
         method: 'POST',
         body: { student_id, course_id },
       }),
@@ -27,4 +27,4 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
   })
 })
 
-export const { useGetCoursesQuery, useGetStudentsQuery, useAssignStudentToCourseMutation } = instructorApiSlice
+export const { useGetInstructorCoursesQuery, useGetStudentsQuery, useAssignStudentToCourseMutation } = instructorApiSlice
