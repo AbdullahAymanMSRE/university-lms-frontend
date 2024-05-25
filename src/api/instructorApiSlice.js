@@ -35,9 +35,6 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
         course: builder.query({
             query: (id) => `instructor/courses/${id}`,
         }),
-        courses: builder.query({
-            query: () => `instructor/courses/`,
-        }),
 
         // createAssignment: builder.mutation({
         //     query: (data) => ({
@@ -57,10 +54,9 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-    useGetCoursesQuery,
+    useGetInstructorCoursesQuery,
     useGetStudentsQuery,
     useAssignStudentToCourseMutation,
     useCreateCourseMutation,
     useCourseQuery,
-    useCoursesQuery,
 } = instructorApiSlice;
