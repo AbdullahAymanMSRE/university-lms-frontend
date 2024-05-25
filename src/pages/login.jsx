@@ -25,7 +25,7 @@ export default function Login() {
     useEffect(() => {
         if (data) {
             setUser(data);
-            toast.success("User created successfully");
+            toast.success("User logged in successfully");
             localStorage.setItem(TOKEN_STORAGE, data.token);
             if (data.role === "student") {
                 navigate("/student");
