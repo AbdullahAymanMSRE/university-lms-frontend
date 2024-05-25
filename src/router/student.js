@@ -2,6 +2,7 @@ import Courses from "../pages/student/Courses";
 import Dashboard from "../pages/student/Dashboard";
 import Account from "../pages/student/Account";
 import Assignments from "../pages/student/Assignments";
+import Announcements from "../pages/student/Announcements";
 
 const studentRoutes = [
   {
@@ -22,7 +23,7 @@ const studentRoutes = [
   },
   {
     path: "announcements",
-    element: <div>Announcements page</div>,
+    element: <Announcements />,
   },
 ];
 
