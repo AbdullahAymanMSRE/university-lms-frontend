@@ -33,7 +33,7 @@ export default function Home() {
         },
         {
           text: "Announcements",
-          url: "/student/announcements",
+          url: "/instructor/announcements",
           icon: icons.AnnouncementsSvg,
         },
       ]}
