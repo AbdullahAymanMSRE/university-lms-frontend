@@ -35,10 +35,7 @@ export default function Dashboard() {
                             />
                         ))}
                     </div>
-                    <Link
-                        to="/student/assignments"
-                        className="hover:translate-x-1 hover:scale-110"
-                    >
+                    <Link to="/student/assignments">
                         <LinkArrow text="View all tasks" color="primary" />
                     </Link>
                 </div>
