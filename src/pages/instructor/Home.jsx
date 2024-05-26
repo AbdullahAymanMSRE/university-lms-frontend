@@ -42,16 +42,6 @@ export default function Home() {
                     url: "/instructor/students",
                     icon: icons.StudentsSvg,
                 },
-                {
-                    text: "Assignments",
-                    url: "/instructor/assignments",
-                    icon: icons.CalendarSvg,
-                },
-                {
-                    text: "Announcements",
-                    url: "/instructor/announcements",
-                    icon: icons.AnnouncementsSvg,
-                },
             ]}
             userType={UserTypes.INSTRUCTOR}
         />
