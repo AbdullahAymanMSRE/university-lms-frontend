@@ -1,6 +1,7 @@
 import AssignmentToDo from "../../components/AssignmentToDo";
 import { useOutletContext } from "react-router-dom";
 import { useGetAssignmentsQuery } from "../../api/studentApiSlice";
+import { format } from "date-fns";
 
 export default function Assignments() {
     const { modal, setModal } = useOutletContext();
@@ -8,34 +9,15 @@ export default function Assignments() {
 
     return (
         <section className="flex min-h-screen w-full flex-col gap-10">
-            <AssignmentToDo
-                courseName="Database Systems"
-                number={1}
-                dueTime="10:00 AM"
-                modal={modal}
-                setModal={setModal}
-            />
-            <AssignmentToDo
-                courseName="Data Structures"
-                number={1}
-                dueTime="10:00 AM"
-                modal={modal}
-                setModal={setModal}
-            />
-            <AssignmentToDo
-                courseName="Algorithms"
-                number={1}
-                dueTime="10:00 AM"
-                modal={modal}
-                setModal={setModal}
-            />
-            <AssignmentToDo
-                courseName="Software Engineering"
-                number={1}
-                dueTime="10:00 AM"
-                modal={modal}
-                setModal={setModal}
-            />
+            {assignments?.map((assignment) => (
+                <AssignmentToDo
+                    courseName={assignment.course_title}
+                    name={assignment.name}
+                    dueTime={`${format(new Date(assignment.due_date), "MM/dd")} 11:59 PM`}
+                    modal={modal}
+                    setModal={setModal}
+                />
+            ))}
         </section>
     );
 }

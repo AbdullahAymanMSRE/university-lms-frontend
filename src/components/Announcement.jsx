@@ -1,6 +1,6 @@
 import { useState } from "react";
 export default function Announcement({ author, subject, content, course }) {
-    const authorInitials = author.split(" ")[0][0] + author.split(" ")[1][0];
+    const authorInitials = author.split(" ")[0][0] + author.split(" ")[0][1];
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div
