@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function AssignmentToDo({ courseName, number, dueTime, modal, setModal}) {
   return (
     <section className="">

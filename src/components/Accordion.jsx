@@ -8,7 +8,7 @@ export default function Accordion({ weekNumber, items }) {
         <div>
             <button
                 type="button"
-                className={`flex w-full items-center justify-between gap-3 bg-primary text-white ${isOpen ? "rounded-b-none" : ""} rounded-xl border border-gray-200 p-5 font-medium`}
+                className={`flex w-full items-center justify-between gap-3 bg-primary text-white ${isOpen ? "rounded-b-none" : ""} rounded-xl border border-gray-200 p-5 font-medium max-md:w-screen`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <span class="flex items-center">Week {weekNumber}</span>
