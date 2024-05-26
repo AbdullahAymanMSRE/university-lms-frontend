@@ -14,15 +14,16 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
         }),
         getStudents: builder.query({
             query: () => baseUrl + "/allstudents",
+            providesTags: ['students']
         }),
 
         assignStudentToCourse: builder.mutation({
-            query: (student_id, course_id) => ({
+            query: ({student_id, course_id}) => ({
                 url: baseUrl + "/courses/assign_student",
                 method: "POST",
                 body: { student_id, course_id },
             }),
-            invalidatesTags: ["courses"],
+            invalidatesTags: ["courses", 'students'],
         }),
         createCourse: builder.mutation({
             query: (data) => ({
