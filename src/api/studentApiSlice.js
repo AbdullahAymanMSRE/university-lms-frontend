@@ -9,9 +9,12 @@ export const studentApiSlice = apiSlice.injectEndpoints({
     }),
 
     getAssignments: builder.query({
-      query: () => baseUrl + '/assignments',
+      query: () => baseUrl + '/allAssignments',
+      transformResponse: (responseData) =>
+        responseData.data,
     }),
+    
   })
 })
 
-export const { useGetStudentCoursesQuery } = studentApiSlice
+export const { useGetStudentCoursesQuery, useGetAssignmentsQuery } = studentApiSlice
