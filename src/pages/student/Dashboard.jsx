@@ -1,22 +1,25 @@
 import WhiteBox from "../../components/WhiteBox";
 import * as icons from "../../svgs/box_icons";
-import Link from "../../components/Link";
+import LinkArrow from "../../components/LinkArrow";
 import Task from "../../components/Task";
 import CoursesShortList from "../../components/CoursesShortList";
-import { useGetStudentCoursesQuery } from "../../api/studentApiSlice";
+import {
+    useGetAssignmentsQuery,
+    useGetStudentCoursesQuery,
+} from "../../api/studentApiSlice";
+import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 export default function Dashboard() {
-    const tasks = 21;
-
     const { data: courses } = useGetStudentCoursesQuery();
-    console.log(courses);
+    const { data: assignments } = useGetAssignmentsQuery();
 
     return (
-        <section className="flex h-screen flex-col gap-6 rounded-3xl max-md:items-center">
+        <section className="flex h-full flex-col gap-6 rounded-3xl max-md:items-center">
             <WhiteBox
                 icon={icons.BoxIconsSvg()}
                 header="My Activities"
-                text={`${tasks} Tasks`}
+                text={`${assignments?.length ?? 0} Task${assignments?.length !== 1 ? "s" : ""}`}
                 showGraph
             />
             <div className="flex w-full flex-wrap gap-7 max-md:justify-center">
@@ -24,23 +27,20 @@ export default function Dashboard() {
                 <div className="relative h-80 max-w-lg flex-1 rounded-3xl bg-white px-7 py-5 text-xl max-lg:basis-full">
                     <h2 className="mb-7 text-3xl font-bold">Upcoming Task</h2>
                     <div className="flex flex-col gap-5">
-                        <Task
-                            taskName={"History Assignment"}
-                            beforeColor={"primary"}
-                            deadLine={"10:00 AM"}
-                        />
-                        <Task
-                            taskName={"History Assignment"}
-                            beforeColor={"primary"}
-                            deadLine={"10:00 AM"}
-                        />
-                        <Task
-                            taskName={"History Assignment"}
-                            beforeColor={"primary"}
-                            deadLine={"10:00 AM"}
-                        />
+                        {assignments?.slice(0, 3).map((assignment) => (
+                            <Task
+                                taskName={assignment.name}
+                                beforeColor="primary"
+                                deadLine={`${format(new Date(assignment.due_date), "MM/dd")} 11:59 PM`}
+                            />
+                        ))}
                     </div>
-                    <Link text="View all tasks" color="primary" />
+                    <Link
+                        to="/student/assignments"
+                        className="hover:translate-x-1 hover:scale-110"
+                    >
+                        <LinkArrow text="View all tasks" color="primary" />
+                    </Link>
                 </div>
             </div>
         </section>

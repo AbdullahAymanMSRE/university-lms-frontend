@@ -3,7 +3,10 @@ import { cn } from "../lib/utils";
 
 export default function LoadingSpinner({ className }) {
     return (
-        <div role="status">
+        <div
+            role="status"
+            className="flex size-full items-center justify-center"
+        >
             <svg
                 aria-hidden="true"
                 className={cn(

@@ -2,13 +2,15 @@ import AssignmentToDo from "../../components/AssignmentToDo";
 import { useOutletContext } from "react-router-dom";
 import { useGetAssignmentsQuery } from "../../api/studentApiSlice";
 import { format } from "date-fns";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function Assignments() {
     const { modal, setModal } = useOutletContext();
-    const { data: assignments } = useGetAssignmentsQuery();
+    const { data: assignments, isLoading } = useGetAssignmentsQuery();
 
     return (
-        <section className="flex min-h-screen w-full flex-col gap-10">
+        <section className="flex size-full flex-col gap-10">
+            {isLoading ? <LoadingSpinner /> : null}
             {assignments?.map((assignment) => (
                 <AssignmentToDo
                     courseName={assignment.course_title}

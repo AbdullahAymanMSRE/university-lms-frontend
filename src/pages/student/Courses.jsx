@@ -14,6 +14,7 @@ export default function Courses() {
                     <CourseCard
                         name={course.title}
                         instructor={course["instructor name"]}
+                        id={course.id}
                     />
                 ))
             )}

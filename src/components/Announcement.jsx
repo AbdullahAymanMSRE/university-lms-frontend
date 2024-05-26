@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 export default function Announcement({ author, subject, content, course }) {
     const authorInitials = author.split(" ")[0][0] + author.split(" ")[0][1];
     const [isOpen, setIsOpen] = useState(false);
@@ -8,19 +9,19 @@ export default function Announcement({ author, subject, content, course }) {
             onClick={() => setIsOpen(!isOpen)}
         >
             <div className="flex flex-1 gap-6">
-                <div className="size-fit text-ellipsis rounded-full border border-primary p-2 text-lg font-medium uppercase text-primary">
+                <div className="flex size-11 items-center justify-center text-ellipsis rounded-full border border-primary text-lg font-medium uppercase text-primary">
                     {authorInitials}
                 </div>
                 <div className="flex flex-1 flex-col items-start">
                     <div className="text-xl font-bold text-darkenedBlue">
                         {subject}
                     </div>
-                    <a
+                    <Link
                         className="mb-3 ml-1 text-xs text-gray-700 hover:underline"
-                        href={`course/${course.id}`}
+                        to={`/student/courses/${course.id}`}
                     >
                         {course.title}
-                    </a>
+                    </Link>
                     <p
                         className={`${isOpen ? "" : "line-clamp-1"} max-w-lg text-sm text-gray-700`}
                     >
