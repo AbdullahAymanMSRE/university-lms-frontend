@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { isAction } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
+import LogoutButton from "./LogoutButton";
 
 export default function SideNav({
     items,
@@ -43,7 +44,7 @@ export default function SideNav({
                     </span>
                 </div>
             </div>
-            <ul className="flex w-52 flex-col gap-4 text-base">
+            <ul className="flex w-52 flex-1 flex-col gap-4 text-base">
                 {items.map((item, index) => (
                     <li
                         key={index}
@@ -79,6 +80,7 @@ export default function SideNav({
                         </NavLink>
                     </li>
                 ))}
+                <LogoutButton />
             </ul>
         </nav>
     );

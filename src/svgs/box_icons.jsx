@@ -104,20 +104,19 @@ export function CourseIconSvg() {
 
 export function Arrow({ color }) {
     return (
-        <i className={`text-${color}`}>
-            <svg
-                width="18"
-                height="12"
-                viewBox="0 0 18 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M4.37114e-07 7L14.17 7L10.59 10.59L12 12L18 6L12 -5.24537e-07L10.59 1.41L14.17 5L6.11959e-07 5L4.37114e-07 7Z"
-                    fill="currentColor"
-                />
-            </svg>
-        </i>
+        <svg
+            width="18"
+            height="12"
+            viewBox="0 0 18 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={`text-${color} origin-left transition duration-500 group-hover:translate-x-1/3 group-hover:scale-x-110`}
+        >
+            <path
+                d="M4.37114e-07 7L14.17 7L10.59 10.59L12 12L18 6L12 -5.24537e-07L10.59 1.41L14.17 5L6.11959e-07 5L4.37114e-07 7Z"
+                fill="currentColor"
+            />
+        </svg>
     );
 }
 
@@ -239,7 +238,11 @@ export function ChevronDown({ isOpen }) {
 
 export function FileIcon() {
     return (
-        <svg className="size-3 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <svg
+            className="size-3 shrink-0"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 384 512"
+        >
             <path d="M320 464c8.8 0 16-7.2 16-16V160H256c-17.7 0-32-14.3-32-32V48H64c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320zM0 64C0 28.7 28.7 0 64 0H229.5c17 0 33.3 6.7 45.3 18.7l90.5 90.5c12 12 18.7 28.3 18.7 45.3V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64z" />
         </svg>
     );

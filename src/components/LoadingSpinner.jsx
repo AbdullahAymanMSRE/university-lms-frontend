@@ -1,7 +1,10 @@
 import React from "react";
 import { cn } from "../lib/utils";
+import useUserStore from "../store/userStore";
 
 export default function LoadingSpinner({ className }) {
+    const role = useUserStore((state) => state.user?.role);
+
     return (
         <div
             role="status"
@@ -12,6 +15,9 @@ export default function LoadingSpinner({ className }) {
                 className={cn(
                     "h-6 w-6 animate-spin fill-primary text-gray-200",
                     className,
+                    {
+                        "fill-secondary": role === "instructor",
+                    },
                 )}
                 viewBox="0 0 100 101"
                 fill="none"
