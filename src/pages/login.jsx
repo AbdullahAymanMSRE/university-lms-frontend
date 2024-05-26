@@ -27,8 +27,7 @@ export default function Login() {
             setUser(data);
             toast.success("User logged in successfully");
             localStorage.setItem(TOKEN_STORAGE, data.token);
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
+            localStorage.setItem("user", JSON.stringify(data));
             if (data.role === "student") {
                 navigate("/student");
             } else {

@@ -34,8 +34,7 @@ export default function Signup() {
             setUser(data);
             toast.success("User created successfully");
             localStorage.setItem(TOKEN_STORAGE, data.token);
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
+            localStorage.setItem("user", JSON.stringify(data));
             if (data.role === "student") {
                 navigate("/student");
             } else {

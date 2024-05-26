@@ -42,7 +42,6 @@ export default function Course() {
                 due_date: assignmentDueDate,
             },
         });
-        toast.success("Assignment created successfully");
     };
 
     const handleCreateAnnouncement = (e) => {
@@ -54,7 +53,6 @@ export default function Course() {
                 content: announcementContent,
             },
         });
-        toast.success("Announcement created successfully");
     };
 
     useEffect(() => {
@@ -63,8 +61,18 @@ export default function Course() {
             setAssignmentDescription("");
             setAssignmentDueDate(format(new Date(), "yyyy-MM-dd"));
             setTab("assignments");
+            toast.success("Assignment created successfully");
         }
     }, [isAssignmentCreated]);
+
+    useEffect(() => {
+        if (isAnnouncementCreated) {
+            setAnnouncementTitle("");
+            setAnnouncementContent("");
+            setTab("announcements");
+            toast.success("Announcement created successfully");
+        }
+    }, [isAnnouncementCreated]);
 
     return (
         <div className="my-10 flex flex-col">
