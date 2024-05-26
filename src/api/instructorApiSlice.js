@@ -25,6 +25,7 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["courses", 'students'],
         }),
+
         createCourse: builder.mutation({
             query: (data) => ({
                 url: "instructor/courses",
