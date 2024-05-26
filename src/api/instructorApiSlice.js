@@ -9,9 +9,9 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
             providesTags: ["courses"],
         }),
 
-        getAssignments: builder.query({
-            query: () => baseUrl + "/assignments",
-        }),
+        // getAssignments: builder.query({
+        //     query: () => baseUrl + "/assignments",
+        // }),
         getStudents: builder.query({
             query: () => baseUrl + "/allstudents",
             providesTags: ['students']
