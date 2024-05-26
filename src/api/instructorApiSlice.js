@@ -9,21 +9,18 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
             providesTags: ["courses"],
         }),
 
-        // getAssignments: builder.query({
-        //     query: () => baseUrl + "/assignments",
-        // }),
         getStudents: builder.query({
             query: () => baseUrl + "/allstudents",
-            providesTags: ['students']
+            providesTags: ["students"],
         }),
 
         assignStudentToCourse: builder.mutation({
-            query: ({student_id, course_id}) => ({
+            query: ({ student_id, course_id }) => ({
                 url: baseUrl + "/courses/assign_student",
                 method: "POST",
                 body: { student_id, course_id },
             }),
-            invalidatesTags: ["courses", 'students'],
+            invalidatesTags: ["courses", "students"],
         }),
 
         createCourse: builder.mutation({
@@ -34,24 +31,29 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["courses"],
         }),
+
         course: builder.query({
-            query: (id) => `instructor/courses/${id}`,
+            query: (id) => `instructor/getCourseDetails/${id}`,
+            providesTags: (result, error, id) => [{ type: "courses", id }],
         }),
 
-        // createAssignment: builder.mutation({
-        //     query: (data) => ({
-        //         url: "instructor/assignments",
-        //         method: "POST",
-        //         body: data,
-        //     }),
-        // }),
-        // createAnnouncement: builder.mutation({
-        //     query: (data) => ({
-        //         url: "instructor/announcements",
-        //         method: "POST",
-        //         body: data,
-        //     }),
-        // }),
+        createAssignment: builder.mutation({
+            query: ({ id, data }) => ({
+                url: "instructor/createAssignment/" + id,
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: (result, error, id) => [{ type: "courses", id }],
+        }),
+
+        createAnnouncement: builder.mutation({
+            query: ({ id, data }) => ({
+                url: "instructor/announcements/" + id,
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: (result, error, id) => [{ type: "courses", id }],
+        }),
     }),
 });
 
@@ -61,4 +63,6 @@ export const {
     useAssignStudentToCourseMutation,
     useCreateCourseMutation,
     useCourseQuery,
+    useCreateAssignmentMutation,
+    useCreateAnnouncementMutation,
 } = instructorApiSlice;
