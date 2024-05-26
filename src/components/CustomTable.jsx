@@ -38,7 +38,11 @@ export default function CustomTable({
                     );
                     if (item.link)
                         return (
-                            <Link to={item.link} className="contents">
+                            <Link
+                                key={index}
+                                to={item.link}
+                                className="contents"
+                            >
                                 {tr}
                             </Link>
                         );
