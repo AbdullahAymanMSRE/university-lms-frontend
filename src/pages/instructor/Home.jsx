@@ -19,7 +19,6 @@ export default function Home() {
     return loading ? (
         <>
             <AuthHeader />
-
             <div className="flex h-screen w-screen items-center justify-center">
                 <LoadingSpinner />
             </div>

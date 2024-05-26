@@ -1,7 +1,6 @@
 import { UserTypes } from "../../lib/constants";
 import * as icons from "../../svgs/sidenav";
 import MainLayout from "../../components/MainLayout";
-import { useNavigate } from "react-router-dom";
 import useUserStore from "../../store/userStore";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -20,7 +19,6 @@ export default function Home() {
     return loading ? (
         <>
             <AuthHeader />
-
             <div className="flex h-screen w-screen items-center justify-center">
                 <LoadingSpinner />
             </div>
