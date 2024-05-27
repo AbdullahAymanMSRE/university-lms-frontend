@@ -1,9 +1,14 @@
-import Accordion from '../../components/Accordion';
+import Accordion from "../../components/Accordion";
 
-export default function Course() {
+export default function Course({ weeks, items }) {
     return (
-        <Accordion
-        weekNumber={1}
-        items={["Lecture 1", "Lecture 2", "Lecture 3", "Lecture 4"]} />
+        <div>
+            {weeks?.map((week) => (
+            <Accordion
+                week={week}
+                items={items}
+            />
+            ))}
+        </div>
     );
 }

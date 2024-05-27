@@ -16,7 +16,7 @@ export default function CourseCard({ name, instructor, id }) {
                     </h2>
                     <p className="mb-2 text-xs font-medium text-text max-md:text-base">{`By ${instructor}`}</p>
                 </div>
-                <LinkArrow text="" color="customBlue" />
+                <LinkArrow text="" />
             </div>
         </Link>
     );

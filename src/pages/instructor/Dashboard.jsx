@@ -32,7 +32,9 @@ export default function Dashboard() {
                     <StudentsPathSvg />
                 </div>
             </div>
-            <CoursesShortList courses={courses} instructor />
+            <div className="h-80">
+                <CoursesShortList courses={courses} isLoading={isLoading} />
+            </div>
         </div>
     );
 }

@@ -1,4 +1,7 @@
-import { useCourseQuery } from "../../api/instructorApiSlice";
+import {
+    useCourseQuery,
+    useCreateWeekMutation,
+} from "../../api/instructorApiSlice";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import CustomTable from "../../components/CustomTable";
@@ -10,8 +13,40 @@ import {
 } from "../../api/instructorApiSlice";
 import { format } from "date-fns";
 import { useEffect } from "react";
+import { CloudUpload } from "lucide-react";
 import { toast } from "react-toastify";
+import Submission from "../../components/Submission";
 
+const TABS = [
+    {
+        tab: "students",
+        title: "Students",
+    },
+    {
+        tab: "assignments",
+        title: "Assignments",
+    },
+    {
+        tab: "create-assignment",
+        title: "Create Assignment",
+    },
+    {
+        tab: "announcements",
+        title: "Announcements",
+    },
+    {
+        tab: "create-announcement",
+        title: "Create Announcement",
+    },
+    {
+        tab: "weeks",
+        title: "Weeks",
+    },
+    {
+        tab: "create-week",
+        title: "Create Week",
+    },
+];
 export default function Course() {
     const { id } = useParams();
     const { data, isLoading } = useCourseQuery(id);
@@ -20,17 +55,38 @@ export default function Course() {
     const [assignmentDescription, setAssignmentDescription] = useState("");
     const [
         createAssignment,
-        { isLoading: isCreating, isSuccess: isAssignmentCreated },
+        {
+            isLoading: isCreating,
+            isSuccess: isAssignmentCreated,
+            isError: isAssignmentError,
+            error: assignmentError,
+        },
     ] = useCreateAssignmentMutation();
     const [
         createAnnouncement,
-        { isLoading: isCreatingAnnouncement, isSuccess: isAnnouncementCreated },
+        {
+            isLoading: isCreatingAnnouncement,
+            isSuccess: isAnnouncementCreated,
+            isError: isAnnouncementError,
+            error: announcementError,
+        },
     ] = useCreateAnnouncementMutation();
     const [assignmentDueDate, setAssignmentDueDate] = useState(
         format(new Date(), "yyyy-MM-dd"),
     );
     const [announcementTitle, setAnnouncementTitle] = useState("");
     const [announcementContent, setAnnouncementContent] = useState("");
+    const [weekName, setWeekName] = useState("");
+
+    const [
+        createWeek,
+        {
+            isLoading: isCreatingWeek,
+            isSuccess: isWeekCreated,
+            isError: isWeekError,
+            error: weekError,
+        },
+    ] = useCreateWeekMutation();
 
     const handleCreateAssignment = (e) => {
         e.preventDefault();
@@ -55,6 +111,16 @@ export default function Course() {
         });
     };
 
+    const handleCreateWeek = (e) => {
+        e.preventDefault();
+        createWeek({
+            id,
+            data: {
+                name: weekName,
+            },
+        });
+    };
+
     useEffect(() => {
         if (isAssignmentCreated) {
             setAssignmentName("");
@@ -74,6 +140,35 @@ export default function Course() {
         }
     }, [isAnnouncementCreated]);
 
+    useEffect(() => {
+        if (isWeekCreated) {
+            setWeekName("");
+            setTab("weeks");
+            toast.success("Week created successfully");
+        }
+    }, [isWeekCreated]);
+
+    useEffect(() => {
+        if (isAssignmentError) {
+            toast.error(assignmentError.data.error);
+        }
+    }, [isAssignmentError]);
+
+    useEffect(() => {
+        if (isAnnouncementError) {
+            toast.error(announcementError.data.error);
+        }
+    }, [isAnnouncementError]);
+
+    useEffect(() => {
+        if (isWeekError) {
+            toast.error(weekError.data.error);
+        }
+    }, [isWeekError]);
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [weekId, setWeekId] = useState(null);
+
     return (
         <div className="my-10 flex flex-col">
             {isLoading ? (
@@ -92,66 +187,20 @@ export default function Course() {
                     </div>
 
                     <div className="mt-10 flex flex-wrap justify-center gap-5">
-                        <button
-                            onClick={() => setTab("students")}
-                            className={cn(
-                                "rounded-lg border border-secondary px-10 py-2 text-secondary",
-                                {
-                                    "bg-secondary  text-white":
-                                        tab === "students",
-                                },
-                            )}
-                        >
-                            Students
-                        </button>
-                        <button
-                            onClick={() => setTab("assignments")}
-                            className={cn(
-                                "rounded-lg border border-secondary px-10 py-2 text-secondary",
-                                {
-                                    "bg-secondary  text-white":
-                                        tab === "assignments",
-                                },
-                            )}
-                        >
-                            Assignments
-                        </button>
-                        <button
-                            onClick={() => setTab("create-assignment")}
-                            className={cn(
-                                "rounded-lg border border-secondary px-10 py-2 text-secondary",
-                                {
-                                    "bg-secondary  text-white":
-                                        tab === "create-assignment",
-                                },
-                            )}
-                        >
-                            Create Assignment
-                        </button>
-                        <button
-                            onClick={() => setTab("announcements")}
-                            className={cn(
-                                "rounded-lg border border-secondary px-10 py-2 text-secondary",
-                                {
-                                    "bg-secondary  text-white":
-                                        tab === "announcements",
-                                },
-                            )}
-                        >
-                            Announcements
-                        </button>
-                        <button
-                            onClick={() => setTab("create-announcement")}
-                            className={cn(
-                                "rounded-lg border border-secondary px-10 py-2 text-secondary",
-                                {
-                                    "bg-secondary  text-white":
-                                        tab === "create-announcement",
-                                },
-                            )}
-                        >
-                            Create Announcement
-                        </button>
+                        {TABS.map((t) => (
+                            <button
+                                onClick={() => setTab(t.tab)}
+                                className={cn(
+                                    "rounded-lg border border-secondary px-10 py-2 text-secondary",
+                                    {
+                                        "bg-secondary  text-white":
+                                            tab === t.tab,
+                                    },
+                                )}
+                            >
+                                {t.title}
+                            </button>
+                        ))}
                     </div>
 
                     <div className="mt-10 w-full">
@@ -161,7 +210,6 @@ export default function Course() {
                                 data={data.course_data.students?.map((s) => {
                                     return {
                                         ...s,
-                                        id: s.student_id,
                                     };
                                 })}
                             />
@@ -337,9 +385,73 @@ export default function Course() {
                                 </button>
                             </form>
                         )}
+
+                        {tab === "weeks" && (
+                            <CustomTable
+                                titles={["Id", "Name", "Actions"]}
+                                data={data.course_data.weeks?.map((w) => {
+                                    return {
+                                        ...w,
+                                        actions: (
+                                            <button
+                                                onClick={() => {
+                                                    setModalOpen(true);
+                                                    setWeekId(w.id);
+                                                }}
+                                                className="rounded bg-secondary px-5 py-3 text-white shadow-lg transition duration-500 ease-in-out hover:scale-105 hover:shadow-xl"
+                                            >
+                                                <CloudUpload />
+                                            </button>
+                                        ),
+                                    };
+                                })}
+                            />
+                        )}
+
+                        {tab === "create-week" && (
+                            <form
+                                onSubmit={handleCreateWeek}
+                                className="mx-auto flex w-full max-w-2xl flex-col gap-6"
+                            >
+                                <div>
+                                    <label
+                                        htmlFor="week-name"
+                                        className="mb-1 block font-bold text-secondary"
+                                    >
+                                        Week Name
+                                    </label>
+                                    <input
+                                        required
+                                        id="week-name"
+                                        type="text"
+                                        value={weekName}
+                                        onChange={(e) =>
+                                            setWeekName(e.target.value)
+                                        }
+                                        className="w-full rounded px-5 py-3 text-xl text-neutral-950 shadow focus:outline-none"
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="flex w-full max-w-xs items-center justify-center self-center rounded bg-secondary px-5 py-3 text-xl text-white shadow-lg transition duration-500 ease-in-out hover:scale-105 hover:shadow-xl"
+                                >
+                                    {isCreatingWeek ? (
+                                        <LoadingSpinner className="fill-white text-white" />
+                                    ) : (
+                                        "Create Week"
+                                    )}
+                                </button>
+                            </form>
+                        )}
                     </div>
                 </div>
             )}
+            <Submission
+                modal={modalOpen}
+                setModal={setModalOpen}
+                courseId={id}
+                weekId={weekId}
+            />
         </div>
     );
 }

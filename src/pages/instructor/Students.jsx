@@ -59,13 +59,16 @@ export default function Students() {
                             <div class="flex items-center justify-center gap-x-4">
                                 {selectedCourse ? (
                                     <ActionButton
-                                        className={cn("bg-secondary", {
-                                            "text-darkblue pointer-events-none bg-transparent hover:scale-100":
-                                                registered,
-                                            "pointer-events-none":
-                                                loadingId === s.id &&
-                                                !registered,
-                                        })}
+                                        className={cn(
+                                            "bg-secondary shadow transition duration-500 hover:scale-105 hover:shadow-lg",
+                                            {
+                                                "text-darkblue pointer-events-none bg-transparent hover:scale-100":
+                                                    registered,
+                                                "pointer-events-none":
+                                                    loadingId === s.id &&
+                                                    !registered,
+                                            },
+                                        )}
                                         onClick={() => {
                                             assignStudentToCourse({
                                                 course_id: selectedCourse.id,

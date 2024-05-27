@@ -54,6 +54,27 @@ export const instructorApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: (result, error, id) => [{ type: "courses", id }],
         }),
+
+        createWeek: builder.mutation({
+            query: ({ id, data }) => ({
+                url: "instructor/createNewWeek/" + id,
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: (result, error, id) => [{ type: "courses", id }],
+        }),
+
+        uploadFile: builder.mutation({
+            query: ({ courseId, weekId, data }) => ({
+                url: "instructor/uploadWeekFile/" + courseId + "/" + weekId,
+                method: "POST",
+                body: data,
+                formData: true,
+            }),
+            invalidatesTags: (result, error, courseId, weekId) => [
+                { type: "courses", courseId },
+            ],
+        }),
     }),
 });
 
@@ -65,4 +86,6 @@ export const {
     useCourseQuery,
     useCreateAssignmentMutation,
     useCreateAnnouncementMutation,
+    useCreateWeekMutation,
+    useUploadFileMutation,
 } = instructorApiSlice;

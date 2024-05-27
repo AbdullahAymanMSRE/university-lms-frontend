@@ -16,12 +16,17 @@ export default function Coursebar({ id, course, author }) {
             {author ? (
                 <Link
                     to={`/student/courses/${id}`}
-                    className="flex h-9 w-28 items-center justify-center rounded-[70px] border border-solid border-primary text-xs text-primary"
+                    className="self-center rounded-full bg-primary px-3 py-2 text-xs font-medium text-white shadow transition duration-500 hover:scale-105 hover:shadow-lg"
                 >
                     View Course
                 </Link>
             ) : (
-                ""
+                <Link
+                    to={`/instructor/courses/${id}`}
+                    className="self-center rounded-full bg-secondary px-3 py-2 text-xs font-medium text-white shadow transition duration-500 hover:scale-105 hover:shadow-lg"
+                >
+                    View Course
+                </Link>
             )}
         </div>
     );

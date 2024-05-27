@@ -1,3 +1,5 @@
+import useUserStore from "../store/userStore";
+
 export function BoxIconsSvg() {
     return (
         <svg
@@ -73,6 +75,9 @@ export function BoxIconsSvg2() {
 }
 
 export function CourseIconSvg() {
+    const role = useUserStore((state) => state.user?.role);
+    let color = role === "student" ? "primary" : "secondary";
+
     return (
         <svg
             width="48"
@@ -81,11 +86,17 @@ export function CourseIconSvg() {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <circle cx="24" cy="24" r="24" fill="#F6F8FD" />
+            <circle
+                cx="24"
+                cy="24"
+                r="24"
+                fill="#F6F8FD"
+                className={`fill-${color}`}
+            />
             <g clip-path="url(#clip0_160_70)">
                 <path
                     d="M16 18H32V20H16V18ZM18 14H30V16H18V14ZM32 22H16C14.9 22 14 22.9 14 24V32C14 33.1 14.9 34 16 34H32C33.1 34 34 33.1 34 32V24C34 22.9 33.1 22 32 22ZM32 32H16V24H32V32ZM22 24.73V31.26L28 28L22 24.73Z"
-                    fill="#FFB547"
+                    fill="#ffffff"
                 />
             </g>
             <defs>

@@ -25,7 +25,7 @@ export default function CustomTable({
                     ))}
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200 bg-white ">
+            <tbody class="divide-y divide-gray-200 bg-white capitalize">
                 {data?.map((item, index) => {
                     const tr = (
                         <tr key={index}>

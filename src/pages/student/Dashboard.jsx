@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import UpcomingTasks from "../../components/UpcomingTasks";
 
 export default function Dashboard() {
     const { data: courses, isLoading: isCoursesLoading } =
@@ -30,30 +31,10 @@ export default function Dashboard() {
                     courses={courses}
                     isLoading={isCoursesLoading}
                 />
-                <div className="relative h-80 max-w-lg flex-1 rounded-3xl bg-white px-7 py-5 text-xl max-lg:basis-full">
-                    <h2 className="mb-7 text-3xl font-bold">Upcoming Task</h2>
-                    {isAssignmentsLoading ? (
-                        <div className="flex items-center justify-center">
-                            <LoadingSpinner />
-                        </div>
-                    ) : (
-                        <div className="flex flex-col gap-5">
-                            {assignments?.slice(0, 3).map((assignment) => (
-                                <Task
-                                    taskName={assignment.name}
-                                    beforeColor="primary"
-                                    deadLine={`${format(new Date(assignment.due_date), "MM/dd")} 11:59 PM`}
-                                />
-                            ))}
-                        </div>
-                    )}
-                    <Link
-                        to="/student/assignments"
-                        className="hover:translate-x-1 hover:scale-110"
-                    >
-                        <LinkArrow text="View all tasks" color="primary" />
-                    </Link>
-                </div>
+                <UpcomingTasks
+                    assignments={assignments}
+                    isAssignmentsLoading={isAssignmentsLoading}
+                />
             </div>
         </section>
     );
