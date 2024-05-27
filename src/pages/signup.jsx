@@ -1,4 +1,5 @@
 import { useSignupMutation } from "../api/apiSlice";
+import { useLoginMutation } from "../api/apiSlice";
 import { useState, useEffect } from "react";
 import { cn } from "../lib/utils";
 import { Link } from "react-router-dom";
@@ -10,6 +11,7 @@ import { TOKEN_STORAGE } from "../lib/constants";
 
 export default function Signup() {
     const [signup, { data, isLoading, isError, error }] = useSignupMutation();
+    const [login, { data: loginData }] = useLoginMutation();
     const [role, setRole] = useState("student");
     const [faculty, setFaculty] = useState("engineering");
     const [name, setName] = useState("");
@@ -32,8 +34,17 @@ export default function Signup() {
     useEffect(() => {
         if (data) {
             setUser(data);
+            login({
+                email: email,
+                password: password,
+            });
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (loginData) {
             toast.success("User created successfully");
-            localStorage.setItem(TOKEN_STORAGE, data.token);
+            localStorage.setItem(TOKEN_STORAGE, loginData.token);
             localStorage.setItem("user", JSON.stringify(data));
             if (data.role === "student") {
                 navigate("/student");
@@ -41,7 +52,7 @@ export default function Signup() {
                 navigate("/instructor");
             }
         }
-    }, [data]);
+    }, [loginData]);
 
     useEffect(() => {
         if (isError) {
