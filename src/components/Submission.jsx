@@ -4,8 +4,12 @@ import { CloudUpload } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useUploadFileMutation } from "../api/instructorApiSlice";
 import LoadingSpinner from "./LoadingSpinner";
+import { toast } from "react-toastify";
+import useUserStore from "../store/userStore";
 
 export default function Submission({ modal, setModal, courseId, weekId }) {
+    const role = useUserStore((state) => state.user?.role);
+    const color = role === "student" ? "primary" : "secondary";
     const [files, setFiles] = useState({});
     const [dragCounter, setDragCounter] = useState(0);
     const inputRef = useRef(null);
@@ -76,6 +80,7 @@ export default function Submission({ modal, setModal, courseId, weekId }) {
                 data: formData,
             });
         }
+        toast.success("Files uploaded successfully");
     };
 
     const handleCancel = () => {
@@ -226,7 +231,7 @@ export default function Submission({ modal, setModal, courseId, weekId }) {
                 <footer className="flex justify-end px-8 pb-8 pt-4">
                     <button
                         onClick={handleSubmit}
-                        className="focus:shadow-outline flex items-center justify-center rounded-sm bg-blue-700 px-3 py-1 text-white hover:bg-blue-500 focus:outline-none"
+                        className={`focus:shadow-outline flex items-center justify-center rounded-sm bg-${color} px-3 py-1 text-white focus:outline-none`}
                     >
                         {isFileUploading ? <LoadingSpinner /> : "Upload now"}
                     </button>
