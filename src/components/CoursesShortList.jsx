@@ -8,7 +8,7 @@ export default function CoursesShortList({ courses, isLoading }) {
     const role = useUserStore((state) => state.role);
     const instructor = role === "instructor";
     return (
-        <div className="relative h-80 max-w-lg flex-1 gap-5 overflow-auto rounded-3xl bg-white px-7 py-5 text-xl  shadow-sm max-lg:basis-full">
+        <div className="relative h-80 max-w-lg flex-1 gap-5 rounded-3xl bg-white px-7 py-5 text-xl  shadow-sm max-lg:basis-full">
             <h2 className="mb-5 font-bold">My Courses</h2>
             {isLoading ? (
                 <div className="flex items-center justify-center">
@@ -22,7 +22,7 @@ export default function CoursesShortList({ courses, isLoading }) {
                         </div>
                     ) : (
                         <>
-                            {courses?.map((course) => (
+                            {courses?.slice(0, 3).map((course) => (
                                 <CourseBar
                                     key={course.id}
                                     id={course.id}

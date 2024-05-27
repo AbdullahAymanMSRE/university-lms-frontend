@@ -8,11 +8,13 @@ export default function AssignmentToDo({
     return (
         <section className="">
             <div className="flex max-sm:flex-col">
-                <div className="flex w-44 flex-col items-center justify-center rounded-s-md bg-primary p-4 max-sm:w-full max-sm:rounded-none max-sm:rounded-t-md">
-                    <p className="text-md text-wrap text-center font-semibold uppercase text-white">
-                        {courseName}
-                    </p>
-                </div>
+                {courseName && (
+                    <div className="flex w-44 flex-col items-center justify-center rounded-s-md bg-primary p-4 max-sm:w-full max-sm:rounded-none max-sm:rounded-t-md">
+                        <p className="text-md text-wrap text-center font-semibold uppercase text-white">
+                            {courseName}
+                        </p>
+                    </div>
+                )}
                 <div className="relative flex basis-full items-center overflow-hidden rounded-e-md bg-white p-4 max-sm:rounded-none max-sm:rounded-b-md">
                     <span className="absolute left-0 top-0 h-1 w-full bg-primary"></span>
                     <div className="flex w-full gap-10">

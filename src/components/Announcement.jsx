@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 export default function Announcement({ author, subject, content, course }) {
-    const authorInitials = author.split(" ")[0][0] + author.split(" ")[0][1];
+    const authorInitials =
+        author && author.split(" ")[0][0] + author.split(" ")[0][1];
     const [isOpen, setIsOpen] = useState(false);
     return (
         <div
@@ -9,19 +10,23 @@ export default function Announcement({ author, subject, content, course }) {
             onClick={() => setIsOpen(!isOpen)}
         >
             <div className="flex flex-1 gap-6">
-                <div className="flex size-11 items-center justify-center text-ellipsis rounded-full border border-primary text-lg font-medium uppercase text-primary">
-                    {authorInitials}
-                </div>
+                {authorInitials && (
+                    <div className="flex size-11 items-center justify-center text-ellipsis rounded-full border border-primary text-lg font-medium uppercase text-primary">
+                        {authorInitials}
+                    </div>
+                )}
                 <div className="flex flex-1 flex-col items-start">
                     <div className="text-xl font-bold text-darkenedBlue">
                         {subject}
                     </div>
-                    <Link
-                        className="mb-3 ml-1 text-xs text-gray-700 hover:underline"
-                        to={`/student/courses/${course.id}`}
-                    >
-                        {course.title}
-                    </Link>
+                    {course.title && (
+                        <Link
+                            className="mb-3 ml-1 text-xs text-gray-700 hover:underline"
+                            to={`/student/courses/${course.id}`}
+                        >
+                            {course.title}
+                        </Link>
+                    )}
                     <p
                         className={`${isOpen ? "" : "line-clamp-1"} max-w-lg text-sm text-gray-700`}
                     >
